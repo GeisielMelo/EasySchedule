@@ -1,3 +1,5 @@
+# type: ignore
+
 import sqlite3
 import sys
 
@@ -88,6 +90,7 @@ class MainWindow(QMainWindow):
     def __init__(self) -> None:
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
+        self.cpfv = InputVerify()
         self.ui.setupUi(self)
         self.widgets = self.ui
 
@@ -135,11 +138,11 @@ class MainWindow(QMainWindow):
             )
         self.widgets.lineCPF.textChanged.connect(
             lambda text: self.widgets.lineCPF.setText(
-                InputVerify.format_cpf(text))
+                self.cpfv.format_cpf(text))
             )
         self.widgets.appointmentCPF.textChanged.connect(
             lambda text: self.widgets.appointmentCPF.setText(
-                InputVerify.format_cpf(text))
+                self.cpfv.format_cpf(text))
             )
         
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.homePage)
@@ -291,15 +294,48 @@ class MainWindow(QMainWindow):
             self.widgets.clientsTable.setRowHidden(row, row_hidden)
 
 # /////////////////////////////////////////////////////////////////////////////
-# Return a CPF string from Client Table
+# Return a LIST(row) from Client Table
 # /////////////////////////////////////////////////////////////////////////////
 
-    def getCpfFromClientsTable(self):
+    def getRowFromClientsTable(self):
         selected_items = self.widgets.clientsTable.selectedItems()
-        if selected_items:
-            current_item = selected_items[3]
-            cpf = current_item.text()
-            return cpf
+        selected_values = []
+        for item in selected_items:
+            selected_values.append(item.text())
+        return selected_values
+
+# /////////////////////////////////////////////////////////////////////////////
+# Set values into the EditPage.
+# /////////////////////////////////////////////////////////////////////////////
+
+    def setValuesOnEditMode(self):
+        try:
+            values = self.getRowFromClientsTable()
+            self.widgets.lineNameEdit.setText(values[1])
+            self.widgets.lineSurnameEdit.setText(values[2])
+            self.widgets.lineCPFEdit.setText(values[3])
+
+            bornDate = values[4]
+            date = QDate.fromString(bornDate, "dd/MM/yyyy")
+            self.widgets.lineBornDateEdit.setDate(date)
+
+            self.widgets.genderSelectEdit.setCurrentText(values[5])
+            self.widgets.consultSelectEdit.setCurrentText(values[6])
+            self.widgets.linePhoneEdit.setText(values[9])
+            self.widgets.lineEmailEdit.setText(values[10])
+
+            self.editWindow()
+
+        except IndexError:
+            return QMessageBox.information(self, 'Nada selecionado.',
+                                           'Selecione um Cliente.')
+
+# /////////////////////////////////////////////////////////////////////////////
+# Change window to EditWindow
+# /////////////////////////////////////////////////////////////////////////////
+
+    def editWindow(self):
+        return self.widgets.stackedWidget.setCurrentWidget(self.widgets.editPage)
 
 # /////////////////////////////////////////////////////////////////////////////
 # Allows the application to be dragged around the screen
@@ -368,24 +404,26 @@ class MainWindow(QMainWindow):
             self.widgets.stackedWidget.setCurrentWidget(self.widgets.registerPage)
 
         if btnName == "delBtn":
-            cpf = self.getCpfFromClientsTable()
-            if cpf is not None:
-                msg = QMessageBox()
-                msg.setWindowTitle('Excluir')
-                msg.setText('Esta ação é irreversivel!')
-                msg.setInformativeText('Deseja continuar?')
-                msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-                answer = msg.exec()
-                if answer == QMessageBox.Yes:
-                    DeleteDB.deleteUser(cpf)
-                    self.attTableWidget()
-            else:
+            try:
+                getter = self.getRowFromClientsTable()
+                cpf = getter[3]
+                if cpf is not None:
+                    msg = QMessageBox()
+                    msg.setWindowTitle('Excluir')
+                    msg.setText('Esta ação é irreversivel!')
+                    msg.setInformativeText('Deseja continuar?')
+                    msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+                    answer = msg.exec()
+                    if answer == QMessageBox.Yes:
+                        DeleteDB.deleteUser(cpf)
+                        self.attTableWidget()
+
+            except IndexError:
                 return QMessageBox.information(self, 'Nada selecionado.',
                                                'Selecione um usuario.')
 
         if btnName == "editBtn":
-            QMessageBox.warning(
-                self, 'Clientes', 'Você não tem permissão para editar.')
+            self.setValuesOnEditMode()
 
         if btnName == "reloadBtn":
             self.attTableWidget()

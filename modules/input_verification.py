@@ -63,7 +63,6 @@ class InputVerify:
             # Insere os caracteres de formatação nas posições corretas
             text = (
                 text[:3] + '.' + text[3:6] + '.' + text[6:9] + '-' + text[9:])
-
         return text
 
 

@@ -115,10 +115,27 @@ QLabel{
 #registerPage .QComboBox{border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}
 #registerPage .QComboBox::item {color: rgb(40, 44, 52);}
 
-#registerPage .QPushButton{background-color: rgb(48, 150, 74); border: none;  border-radius: 5px;}
+#registerPage .QPushButton{background-color: rgb(98, 114, 164); border: none;  border-radius: 5px;}
 #registerPage .QPushButton:hover {background-color: rgb(80, 250, 123);}
 #registerPage .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
 
+#dateSelect{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}
+/* ////////////////////////////////////////EDIT PAGE/////////////////////////////////////////////*/
+#inputBox2{	background-color: rgb(68, 71, 90); border: 2px solid rgb(248, 248, 242); border-radius: 4px;}
+#editTitle{font: 18pt &quot;Segoe UI&quot;;}
+#editPage {background-color: rgb(68, 71, 90);}
+
+/* INPUT LINE*/
+#editPage .QLineEdit{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}
+
+#editPage .QComboBox{border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}
+#editPage .QComboBox::item {color: rgb(40, 44, 52);}
+
+#editPage .QPushButton{background-color: rgb(98, 114, 164); border: none;  border-radius: 5px;}
+#editPage .QPushButton:hover {background-color: rgb(80, 250, 123);}
+#editPage .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
+
+#lineBornDateEdit{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}
 /* ////////////////////////////////////////QUERIES PAGE/////////////////////////////////////////////*/
 #queriesPage .QFrame{	background-color: rgb(68, 71, 90); border: 2px solid rgb(248, 248, 242); border-radius: 4px;}
 #appointmentTitle{font: 18pt &quot;Segoe UI&quot;;}
@@ -362,7 +379,7 @@ QLabel{
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="accountBtn">
+           <widget class="QPushButton" name="logoutBtn">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -379,7 +396,7 @@ QLabel{
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-image: url(:/icons/images/icons/icon_settings.png);</string>
+             <string notr="true">background-image: url(:/icons/images/icons/cil-account-logout.png);</string>
             </property>
             <property name="text">
              <string>PushButton</string>
@@ -759,7 +776,7 @@ QLabel{
                       <enum>QFrame::NoFrame</enum>
                      </property>
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>4</number>
                      </property>
                      <widget class="QWidget" name="homePage">
                       <property name="styleSheet">
@@ -768,19 +785,6 @@ QLabel{
                      </widget>
                      <widget class="QWidget" name="registerPage">
                       <layout class="QVBoxLayout" name="verticalLayout_9">
-                       <item>
-                        <spacer name="verticalSpacer_6">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>20</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
                        <item>
                         <widget class="QFrame" name="frame">
                          <property name="frameShape">
@@ -791,30 +795,17 @@ QLabel{
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_13">
                           <item>
-                           <spacer name="horizontalSpacer_8">
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>40</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                           </spacer>
-                          </item>
-                          <item>
                            <widget class="QFrame" name="inputBox">
                             <property name="minimumSize">
                              <size>
-                              <width>500</width>
-                              <height>500</height>
+                              <width>0</width>
+                              <height>0</height>
                              </size>
                             </property>
                             <property name="maximumSize">
                              <size>
-                              <width>16777215</width>
-                              <height>16777215</height>
+                              <width>550</width>
+                              <height>500</height>
                              </size>
                             </property>
                             <property name="frameShape">
@@ -884,15 +875,8 @@ QLabel{
                                    <property name="verticalSpacing">
                                     <number>10</number>
                                    </property>
-                                   <item row="2" column="0">
-                                    <widget class="QLabel" name="labelSurname">
-                                     <property name="text">
-                                      <string>Sobrenome</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="7" column="1">
-                                    <widget class="QLineEdit" name="lineBornDate">
+                                   <item row="4" column="1">
+                                    <widget class="QLineEdit" name="lineCPF">
                                      <property name="minimumSize">
                                       <size>
                                        <width>150</width>
@@ -905,12 +889,8 @@ QLabel{
                                        <height>16777215</height>
                                       </size>
                                      </property>
-                                    </widget>
-                                   </item>
-                                   <item row="3" column="0">
-                                    <widget class="QLabel" name="labelGender">
                                      <property name="text">
-                                      <string>Sexo</string>
+                                      <string/>
                                      </property>
                                     </widget>
                                    </item>
@@ -918,6 +898,84 @@ QLabel{
                                     <widget class="QLabel" name="labelName">
                                      <property name="text">
                                       <string>Nome</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="7" column="0">
+                                    <widget class="QLabel" name="labelEmail">
+                                     <property name="text">
+                                      <string>Email</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="6" column="1">
+                                    <widget class="QDateEdit" name="dateSelect">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <property name="alignment">
+                                      <set>Qt::AlignCenter</set>
+                                     </property>
+                                     <property name="buttonSymbols">
+                                      <enum>QAbstractSpinBox::NoButtons</enum>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="8" column="0" colspan="2">
+                                    <widget class="QPushButton" name="confirmRegisterBtn">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>0</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="cursor">
+                                      <cursorShape>PointingHandCursor</cursorShape>
+                                     </property>
+                                     <property name="styleSheet">
+                                      <string notr="true">image: url(:/icons/images/icons/cil-check.png);</string>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="6" column="0">
+                                    <widget class="QLabel" name="labelBornDate">
+                                     <property name="text">
+                                      <string>Nascimento</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="2" column="1">
+                                    <widget class="QLineEdit" name="lineSurname">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>0</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>300</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="5" column="0">
+                                    <widget class="QLabel" name="labelPhone">
+                                     <property name="text">
+                                      <string>Telefone</string>
                                      </property>
                                     </widget>
                                    </item>
@@ -971,96 +1029,7 @@ QLabel{
                                      </item>
                                     </widget>
                                    </item>
-                                   <item row="9" column="1">
-                                    <widget class="QPushButton" name="confirmRegisterBtn">
-                                     <property name="minimumSize">
-                                      <size>
-                                       <width>0</width>
-                                       <height>25</height>
-                                      </size>
-                                     </property>
-                                     <property name="cursor">
-                                      <cursorShape>PointingHandCursor</cursorShape>
-                                     </property>
-                                     <property name="styleSheet">
-                                      <string notr="true">image: url(:/icons/images/icons/cil-check.png);</string>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="5" column="0">
-                                    <widget class="QLabel" name="labelPhone">
-                                     <property name="text">
-                                      <string>Telefone</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="7" column="0">
-                                    <widget class="QLabel" name="labelBornDate">
-                                     <property name="text">
-                                      <string>Nascimento</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="4" column="1">
-                                    <widget class="QLineEdit" name="lineCPF">
-                                     <property name="minimumSize">
-                                      <size>
-                                       <width>150</width>
-                                       <height>25</height>
-                                      </size>
-                                     </property>
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>150</width>
-                                       <height>16777215</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="4" column="0">
-                                    <widget class="QLabel" name="labelCPF">
-                                     <property name="text">
-                                      <string>CPF</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="6" column="0">
-                                    <widget class="QLabel" name="labelCel">
-                                     <property name="text">
-                                      <string>Celular</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="8" column="0">
-                                    <widget class="QLabel" name="labelEmail">
-                                     <property name="text">
-                                      <string>Email</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="2" column="1">
-                                    <widget class="QLineEdit" name="lineSurname">
-                                     <property name="minimumSize">
-                                      <size>
-                                       <width>0</width>
-                                       <height>25</height>
-                                      </size>
-                                     </property>
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>300</width>
-                                       <height>16777215</height>
-                                      </size>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item row="6" column="1">
+                                   <item row="5" column="1">
                                     <widget class="QLineEdit" name="lineCel">
                                      <property name="minimumSize">
                                       <size>
@@ -1076,23 +1045,28 @@ QLabel{
                                      </property>
                                     </widget>
                                    </item>
-                                   <item row="5" column="1">
-                                    <widget class="QLineEdit" name="linePhone">
-                                     <property name="minimumSize">
-                                      <size>
-                                       <width>150</width>
-                                       <height>25</height>
-                                      </size>
-                                     </property>
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>150</width>
-                                       <height>16777215</height>
-                                      </size>
+                                   <item row="4" column="0">
+                                    <widget class="QLabel" name="labelCPF">
+                                     <property name="text">
+                                      <string>CPF</string>
                                      </property>
                                     </widget>
                                    </item>
-                                   <item row="8" column="1">
+                                   <item row="2" column="0">
+                                    <widget class="QLabel" name="labelSurname">
+                                     <property name="text">
+                                      <string>Sobrenome</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="3" column="0">
+                                    <widget class="QLabel" name="labelGender">
+                                     <property name="text">
+                                      <string>Sexo</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="7" column="1">
                                     <widget class="QLineEdit" name="lineEmail">
                                      <property name="minimumSize">
                                       <size>
@@ -1143,34 +1117,400 @@ QLabel{
                             </layout>
                            </widget>
                           </item>
-                          <item>
-                           <spacer name="horizontalSpacer_7">
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>40</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                           </spacer>
-                          </item>
                          </layout>
                         </widget>
                        </item>
-                       <item>
-                        <spacer name="verticalSpacer_7">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="editPage">
+                      <layout class="QVBoxLayout" name="verticalLayout_20">
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QFrame" name="inputBox2">
+                         <property name="maximumSize">
                           <size>
-                           <width>20</width>
-                           <height>40</height>
+                           <width>550</width>
+                           <height>500</height>
                           </size>
                          </property>
-                        </spacer>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <item>
+                           <widget class="QFrame" name="inputBox_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>500</width>
+                              <height>500</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_18">
+                             <property name="topMargin">
+                              <number>20</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>20</number>
+                             </property>
+                             <item>
+                              <layout class="QVBoxLayout" name="verticalLayout_19">
+                               <item>
+                                <spacer name="verticalSpacer_8">
+                                 <property name="orientation">
+                                  <enum>Qt::Vertical</enum>
+                                 </property>
+                                 <property name="sizeHint" stdset="0">
+                                  <size>
+                                   <width>20</width>
+                                   <height>40</height>
+                                  </size>
+                                 </property>
+                                </spacer>
+                               </item>
+                               <item alignment="Qt::AlignHCenter">
+                                <widget class="QLabel" name="editTitle">
+                                 <property name="text">
+                                  <string>Editando dados</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                                 <property name="spacing">
+                                  <number>9</number>
+                                 </property>
+                                 <item>
+                                  <spacer name="horizontalSpacer_12">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <layout class="QGridLayout" name="gridLayout_5">
+                                   <property name="leftMargin">
+                                    <number>10</number>
+                                   </property>
+                                   <property name="topMargin">
+                                    <number>10</number>
+                                   </property>
+                                   <property name="rightMargin">
+                                    <number>10</number>
+                                   </property>
+                                   <property name="bottomMargin">
+                                    <number>10</number>
+                                   </property>
+                                   <property name="horizontalSpacing">
+                                    <number>30</number>
+                                   </property>
+                                   <property name="verticalSpacing">
+                                    <number>10</number>
+                                   </property>
+                                   <item row="7" column="1">
+                                    <widget class="QLineEdit" name="lineEmailEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="12" column="0" colspan="2">
+                                    <widget class="QPushButton" name="confirmeditBtn">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>0</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="cursor">
+                                      <cursorShape>PointingHandCursor</cursorShape>
+                                     </property>
+                                     <property name="styleSheet">
+                                      <string notr="true">image: url(:/icons/images/icons/cil-pencil.png);
+</string>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="3" column="0">
+                                    <widget class="QLabel" name="labelGenderEdit">
+                                     <property name="text">
+                                      <string>Sexo</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="4" column="1">
+                                    <widget class="QLineEdit" name="lineCPFEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="2" column="1">
+                                    <widget class="QLineEdit" name="lineSurnameEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>0</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>300</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="3" column="1" alignment="Qt::AlignLeft">
+                                    <widget class="QComboBox" name="genderSelectEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                     <property name="styleSheet">
+                                      <string notr="true"/>
+                                     </property>
+                                     <item>
+                                      <property name="text">
+                                       <string>----------</string>
+                                      </property>
+                                     </item>
+                                     <item>
+                                      <property name="text">
+                                       <string>Masculino</string>
+                                      </property>
+                                     </item>
+                                     <item>
+                                      <property name="text">
+                                       <string>Feminino</string>
+                                      </property>
+                                     </item>
+                                    </widget>
+                                   </item>
+                                   <item row="5" column="0">
+                                    <widget class="QLabel" name="labelPhoneEdit">
+                                     <property name="text">
+                                      <string>Telefone</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="7" column="0">
+                                    <widget class="QLabel" name="labelEmailEdit">
+                                     <property name="text">
+                                      <string>Email</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="1" column="1">
+                                    <widget class="QLineEdit" name="lineNameEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>300</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>300</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="8" column="1">
+                                    <widget class="QLabel" name="__grip">
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="5" column="1">
+                                    <widget class="QLineEdit" name="linePhoneEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>25</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>16777215</height>
+                                      </size>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="4" column="0">
+                                    <widget class="QLabel" name="labelCPFEdit">
+                                     <property name="text">
+                                      <string>CPF</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="1" column="0">
+                                    <widget class="QLabel" name="labelNameEdit">
+                                     <property name="text">
+                                      <string>Nome</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="9" column="1">
+                                    <widget class="QComboBox" name="consultSelectEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <item>
+                                      <property name="text">
+                                       <string>NAO</string>
+                                      </property>
+                                     </item>
+                                     <item>
+                                      <property name="text">
+                                       <string>SIM</string>
+                                      </property>
+                                     </item>
+                                    </widget>
+                                   </item>
+                                   <item row="2" column="0">
+                                    <widget class="QLabel" name="labelSurnameEdit">
+                                     <property name="text">
+                                      <string>Sobrenome</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="6" column="1">
+                                    <widget class="QDateEdit" name="lineBornDateEdit">
+                                     <property name="minimumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>150</width>
+                                       <height>26</height>
+                                      </size>
+                                     </property>
+                                     <property name="alignment">
+                                      <set>Qt::AlignCenter</set>
+                                     </property>
+                                     <property name="buttonSymbols">
+                                      <enum>QAbstractSpinBox::NoButtons</enum>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="9" column="0">
+                                    <widget class="QLabel" name="labelConsultEdit">
+                                     <property name="text">
+                                      <string>Consulta</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="6" column="0">
+                                    <widget class="QLabel" name="labelBornDateEdit">
+                                     <property name="text">
+                                      <string>Nascimento</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </item>
+                                 <item>
+                                  <spacer name="horizontalSpacer_13">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <spacer name="verticalSpacer_6">
+                                 <property name="orientation">
+                                  <enum>Qt::Vertical</enum>
+                                 </property>
+                                 <property name="sizeHint" stdset="0">
+                                  <size>
+                                   <width>20</width>
+                                   <height>40</height>
+                                  </size>
+                                 </property>
+                                </spacer>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -1180,7 +1520,7 @@ QLabel{
                         <widget class="QFrame" name="appointmentNew">
                          <property name="maximumSize">
                           <size>
-                           <width>500</width>
+                           <width>550</width>
                            <height>500</height>
                           </size>
                          </property>
@@ -1256,13 +1596,6 @@ QLabel{
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QLabel" name="appointmentLabelSurname">
-                                  <property name="text">
-                                   <string>Sobrenome</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
                                  <widget class="QLabel" name="appointmentLabelCPF">
                                   <property name="text">
                                    <string>CPF</string>
@@ -1320,23 +1653,7 @@ QLabel{
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QLineEdit" name="appointmentSurname">
-                                  <property name="minimumSize">
-                                   <size>
-                                    <width>290</width>
-                                    <height>25</height>
-                                   </size>
-                                  </property>
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>290</width>
-                                    <height>16777215</height>
-                                   </size>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QLineEdit" name="lineEdit">
+                                 <widget class="QLineEdit" name="appointmentCPF">
                                   <property name="minimumSize">
                                    <size>
                                     <width>290</width>
@@ -1576,7 +1893,7 @@ QLabel{
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="markBtn">
+                               <widget class="QPushButton" name="reloadBtn">
                                 <property name="minimumSize">
                                  <size>
                                   <width>75</width>
@@ -1584,7 +1901,7 @@ QLabel{
                                  </size>
                                 </property>
                                 <property name="styleSheet">
-                                 <string notr="true">image: url(:/icons/images/icons/cil-calendar-check.png);</string>
+                                 <string notr="true">image: url(:/icons/images/icons/cil-loop-circular.png);</string>
                                 </property>
                                 <property name="text">
                                  <string/>
@@ -1646,25 +1963,6 @@ QLabel{
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="searchBtn">
-                           <property name="minimumSize">
-                            <size>
-                             <width>75</width>
-                             <height>25</height>
-                            </size>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">image: url(:/icons/images/icons/cil-magnifying-glass.png);</string>
-                           </property>
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
                           <spacer name="horizontalSpacer_4">
                            <property name="orientation">
                             <enum>Qt::Horizontal</enum>
@@ -1680,63 +1978,120 @@ QLabel{
                         </layout>
                        </item>
                        <item>
-                        <widget class="QTableWidget" name="tableWidget">
+                        <widget class="QTableWidget" name="clientsTable">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(40, 44, 52);</string>
                          </property>
+                         <property name="editTriggers">
+                          <set>QAbstractItemView::NoEditTriggers</set>
+                         </property>
+                         <property name="selectionMode">
+                          <enum>QAbstractItemView::SingleSelection</enum>
+                         </property>
+                         <property name="selectionBehavior">
+                          <enum>QAbstractItemView::SelectRows</enum>
+                         </property>
+                         <property name="textElideMode">
+                          <enum>Qt::ElideNone</enum>
+                         </property>
+                         <property name="showGrid">
+                          <bool>true</bool>
+                         </property>
+                         <property name="gridStyle">
+                          <enum>Qt::SolidLine</enum>
+                         </property>
+                         <attribute name="horizontalHeaderVisible">
+                          <bool>true</bool>
+                         </attribute>
+                         <attribute name="verticalHeaderVisible">
+                          <bool>false</bool>
+                         </attribute>
+                         <column>
+                          <property name="text">
+                           <string>ID</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
+                         </column>
                          <column>
                           <property name="text">
                            <string>Nome</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
                           </property>
                          </column>
                          <column>
                           <property name="text">
                            <string>Sobrenome</string>
                           </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Sexo</string>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Nascimento</string>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Telefone</string>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Celular</string>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
                           </property>
                          </column>
                          <column>
                           <property name="text">
                            <string>CPF</string>
                           </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
                          </column>
                          <column>
                           <property name="text">
-                           <string>Email</string>
+                           <string>Nascimento</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>Sexo</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
                           </property>
                          </column>
                          <column>
                           <property name="text">
                            <string>Consulta</string>
                           </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
                          </column>
                          <column>
                           <property name="text">
-                           <string>Data</string>
+                           <string>Dia</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
                           </property>
                          </column>
                          <column>
                           <property name="text">
                            <string>Hora</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>Telefone</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>Email</string>
+                          </property>
+                          <property name="textAlignment">
+                           <set>AlignLeading|AlignVCenter</set>
                           </property>
                          </column>
                         </widget>
@@ -2061,7 +2416,7 @@ QLabel{
  </widget>
  <resources>
   <include location="resources.qrc"/>
-  <include location="F:/Download/Compressed/Modern_GUI_PyDracula_PySide6_or_PyQt6-master/Modern_GUI_PyDracula_PySide6_or_PyQt6-master/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
