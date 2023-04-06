@@ -31,5 +31,13 @@ class Appointment:
             connection.commit()
             cursor.close()
 
-    def cancelAppointment(self):
-        ...
+    def cancelAppointment(self, name: str, cpf: str,
+                          date: str, hour: str):
+        with connectionTunnel() as connection:
+            cursor = connection.cursor()
+            sql = f'UPDATE {TABLE_NAME} ' \
+                'SET appointment=?, date=?, hour=? ' \
+                'WHERE name=? AND cpf=?'
+            cursor.execute(sql, ('CANCELADA', date, hour, name, cpf))
+            connection.commit()
+            cursor.close()

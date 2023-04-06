@@ -54,8 +54,8 @@ class DeleteDB:
 class EditDB:
     """ Edit an existing user in the DB """
     def editUser(self, user_id: int, name: str, surname: str, gender: str,
-                 cpf: str, cel: str = '', birth: str = '',
-                 email: str = ''):
+                 cpf: str, cel: str = '', birth: str = '', email: str = '',
+                 consult: str = ''):
         try:
             user_id = int(user_id)
         except ValueError:
@@ -66,8 +66,8 @@ class EditDB:
             cursor = connection.cursor()
             sql = f'UPDATE {TABLE_NAME} '\
                 'SET name=?, surname=?, gender=?, cpf=?, cel=?, ' \
-                'birth=?, email=? WHERE id=?'
+                'birth=?, email=?, appointment=? WHERE id=?'
             cursor.execute(sql, (name, surname, gender, cpf,
-                                 cel, birth, email, user_id))
+                                 cel, birth, email, consult, user_id))
             connection.commit()
             cursor.close()

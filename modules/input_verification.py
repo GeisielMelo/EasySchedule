@@ -3,7 +3,7 @@ import re
 from database.dbSearch import SearchDB
 
 
-def checkThisCPF(self, cpf: str):
+def checkThisCPF(cpf: str):
     cpf = cpf.replace(".", "").replace("-", "")
     # Verifica se o CPF tem 11 dígitos
     if len(cpf) != 11:
@@ -75,7 +75,7 @@ class CheckAppointment:
 
     def isCpfValid(self, user_input: tuple) -> bool:
         cpf = user_input[1]
-        if not checkThisCPF(self, cpf):
+        if not checkThisCPF(cpf):
             return False
         return True
 
@@ -86,7 +86,7 @@ class CheckAppointment:
         return False
 
 
-class CheckRegister:
+class InputValuesVerification:
     def isFilled(self, user_input: tuple) -> bool:
         for item in user_input:
             if item == '':
@@ -94,8 +94,8 @@ class CheckRegister:
         return True
 
     def isCpfValid(self, user_input: tuple) -> bool:
-        cpf = user_input[3]
-        if not checkThisCPF(self, cpf):
+        cpf = user_input[4]
+        if not checkThisCPF(cpf):
             return False
         return True
 
@@ -110,3 +110,8 @@ class CheckRegister:
         if SearchDB.searchCPF(cpf):
             return True
         return False
+
+
+if __name__ == "__main__":
+    check = checkThisCPF('027.510.340-47')
+    print(check)

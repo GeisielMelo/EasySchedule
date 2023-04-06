@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_mainqqWPPx.ui'
+## Form generated from reading UI file 'ui_mainVVbKta.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -16,9 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
                            QKeySequence, QLinearGradient, QPainter, QPalette,
                            QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox,
-                               QApplication, QComboBox, QDateEdit, QFrame,
-                               QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-                               QLineEdit, QMainWindow, QPushButton,
+                               QApplication, QComboBox, QDateEdit, QFormLayout,
+                               QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+                               QLabel, QLineEdit, QMainWindow, QPushButton,
                                QSizePolicy, QSpacerItem, QStackedWidget,
                                QTableWidget, QTableWidgetItem, QTimeEdit,
                                QVBoxLayout, QWidget)
@@ -108,12 +108,13 @@ class Ui_MainWindow(object):
 "#addBtn:hover {background-color: rgb(80, 250, 123);}\n"
 "#delBtn:hover {background-color: rgb(255, 85, 85);}\n"
 "#editBtn:hover {background-color: rgb(98, 114, 164);}\n"
-"#markBtn:hover {background-color: rgb(98, 114, 164);}\n"
+"#scheduleBtn:hover {background-color: rgb(98, 114, 164);}\n"
+"#reloadBtn:hover {background-color: rgb(98, 114, 164);}\n"
 "\n"
 "#searchBtn{background-color: rgb(98, 114, 164); border: none;  border-radius: 5px;}\n"
 "#searchBtn:hover {background-color: rgb(139, 163, 234);}\n"
-"#searchBtn:pressed { background-color: rgb(67, 78, 112); border-style: solid; border-radius: 4px"
-                        "; }\n"
+"#searchBtn:pressed { background-"
+                        "color: rgb(67, 78, 112); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "#searchBox{border-bottom: 1px solid black; color: rgb(40, 44, 52);}\n"
 "#searchBox {border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}\n"
@@ -130,8 +131,8 @@ class Ui_MainWindow(object):
 "\n"
 "#registerPage .QPushButton{background-color: rgb(98, 114, 164); border: none;  border-radius: 5px;}\n"
 "#registerPage .QPushButton:hover {background-color: rgb(80, 250, 123);}\n"
-"#registerPage .QPushButton:pressed { background-color: rgb(23, 2"
-                        "6, 30); border-style: solid; border-radius: 4px; }\n"
+""
+                        "#registerPage .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "#dateSelect{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}\n"
 "/* ////////////////////////////////////////EDIT PAGE/////////////////////////////////////////////*/\n"
@@ -147,11 +148,12 @@ class Ui_MainWindow(object):
 "\n"
 "#editPage .QPushButton{background-color: rgb(98, 114, 164); border: none;  border-radius: 5px;}\n"
 "#editPage .QPushButton:hover {background-color: rgb(80, 250, 123);}\n"
-"#editPage .QPushButton:pressed { background-color: rgb(23, 26, 30); bo"
-                        "rder-style: solid; border-radius: 4px; }\n"
+"#editP"
+                        "age .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "#lineBornDateEdit{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}\n"
 "/* ////////////////////////////////////////QUERIES PAGE/////////////////////////////////////////////*/\n"
+"#queriesPage{border: none}\n"
 "#queriesPage .QFrame{	background-color: rgb(68, 71, 90); border: 2px solid rgb(248, 248, 242); border-radius: 4px;}\n"
 "#appointmentTitle{font: 18pt \"Segoe UI\";}\n"
 "\n"
@@ -160,11 +162,14 @@ class Ui_MainWindow(object):
 "\n"
 "#appointmentConfirmBtn{background-color: rgb(48, 150, 74); border: none;  border-radius: 5px;}\n"
 "#appointmentConfirmBtn:hover {background-color: rgb(80, 250, 123);}\n"
-"#appointmentConfirmBtn:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
+"#appointmentConfirmBtn:pressed { background-color: rgb(23, 26, 30); border-style: solid"
+                        "; border-radius: 4px; }\n"
 "\n"
+"#appointmentCancelBtn{background-color: rgb(255, 85, 85); border: none;  border-radius: 5px;}\n"
+"#appointmentCancelBtn:hover {background-color: rgb(255, 58, 58);}\n"
+"#appointmentCancelBtn:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "/* INPUT LINE*/\n"
-"#queriesPage .QLineEdit{border: none; bord"
-                        "er-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}")
+"#queriesPage .QLineEdit{border: none; border-bottom: 1px solid black; border-radius: 4px; color: rgb(40, 44, 52);}")
         self.verticalLayout_5 = QVBoxLayout(self.styleSheet)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -463,6 +468,7 @@ class Ui_MainWindow(object):
         self.lineCPF.setObjectName(u"lineCPF")
         self.lineCPF.setMinimumSize(QSize(150, 25))
         self.lineCPF.setMaximumSize(QSize(150, 16777215))
+        self.lineCPF.setMaxLength(14)
 
         self.gridLayout_4.addWidget(self.lineCPF, 4, 1, 1, 1)
 
@@ -480,8 +486,9 @@ class Ui_MainWindow(object):
         self.dateSelect.setObjectName(u"dateSelect")
         self.dateSelect.setMinimumSize(QSize(150, 26))
         self.dateSelect.setMaximumSize(QSize(150, 26))
-        self.dateSelect.setAlignment(Qt.AlignCenter)
+        self.dateSelect.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.dateSelect.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.dateSelect.setTime(QTime(0, 0, 0))
 
         self.gridLayout_4.addWidget(self.dateSelect, 6, 1, 1, 1)
 
@@ -532,6 +539,7 @@ class Ui_MainWindow(object):
         self.lineCel.setObjectName(u"lineCel")
         self.lineCel.setMinimumSize(QSize(150, 25))
         self.lineCel.setMaximumSize(QSize(150, 16777215))
+        self.lineCel.setMaxLength(13)
 
         self.gridLayout_4.addWidget(self.lineCel, 5, 1, 1, 1)
 
@@ -649,6 +657,7 @@ class Ui_MainWindow(object):
         self.lineCPFEdit.setObjectName(u"lineCPFEdit")
         self.lineCPFEdit.setMinimumSize(QSize(150, 25))
         self.lineCPFEdit.setMaximumSize(QSize(150, 16777215))
+        self.lineCPFEdit.setMaxLength(14)
 
         self.gridLayout_5.addWidget(self.lineCPFEdit, 4, 1, 1, 1)
 
@@ -696,6 +705,7 @@ class Ui_MainWindow(object):
         self.linePhoneEdit.setObjectName(u"linePhoneEdit")
         self.linePhoneEdit.setMinimumSize(QSize(150, 25))
         self.linePhoneEdit.setMaximumSize(QSize(150, 16777215))
+        self.linePhoneEdit.setMaxLength(13)
 
         self.gridLayout_5.addWidget(self.linePhoneEdit, 5, 1, 1, 1)
 
@@ -727,7 +737,7 @@ class Ui_MainWindow(object):
         self.lineBornDateEdit.setObjectName(u"lineBornDateEdit")
         self.lineBornDateEdit.setMinimumSize(QSize(150, 26))
         self.lineBornDateEdit.setMaximumSize(QSize(150, 26))
-        self.lineBornDateEdit.setAlignment(Qt.AlignCenter)
+        self.lineBornDateEdit.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.lineBornDateEdit.setButtonSymbols(QAbstractSpinBox.NoButtons)
 
         self.gridLayout_5.addWidget(self.lineBornDateEdit, 6, 1, 1, 1)
@@ -775,76 +785,61 @@ class Ui_MainWindow(object):
         self.appointmentNew.setMaximumSize(QSize(550, 500))
         self.appointmentNew.setFrameShape(QFrame.StyledPanel)
         self.appointmentNew.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_17 = QVBoxLayout(self.appointmentNew)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.verticalLayout_12 = QVBoxLayout(self.appointmentNew)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(-1, -1, -1, 30)
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_17.addItem(self.verticalSpacer_5)
+        self.gridLayout.addItem(self.verticalSpacer_5, 0, 1, 1, 1)
 
-        self.verticalLayout_16 = QVBoxLayout()
-        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_8, 1, 0, 1, 1)
+
+        self.verticalLayout_4 = QVBoxLayout()
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.appointmentTitle = QLabel(self.appointmentNew)
         self.appointmentTitle.setObjectName(u"appointmentTitle")
+        self.appointmentTitle.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.verticalLayout_16.addWidget(self.appointmentTitle, 0, Qt.AlignHCenter)
+        self.verticalLayout_4.addWidget(self.appointmentTitle)
 
-        self.horizontalLayout_11 = QHBoxLayout()
-        self.horizontalLayout_11.setSpacing(30)
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalLayout_11.setContentsMargins(10, 10, 10, 10)
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_11.addItem(self.horizontalSpacer_10)
-
-        self.verticalLayout_12 = QVBoxLayout()
-        self.verticalLayout_12.setSpacing(0)
-        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.formLayout = QFormLayout()
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setVerticalSpacing(6)
+        self.formLayout.setContentsMargins(-1, 18, -1, -1)
         self.appointmentLabelName = QLabel(self.appointmentNew)
         self.appointmentLabelName.setObjectName(u"appointmentLabelName")
 
-        self.verticalLayout_12.addWidget(self.appointmentLabelName)
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.appointmentLabelName)
 
-        self.appointmentLabelCPF = QLabel(self.appointmentNew)
-        self.appointmentLabelCPF.setObjectName(u"appointmentLabelCPF")
+        self.appointmentName = QLineEdit(self.appointmentNew)
+        self.appointmentName.setObjectName(u"appointmentName")
+        self.appointmentName.setMinimumSize(QSize(150, 26))
+        self.appointmentName.setMaximumSize(QSize(150, 26))
 
-        self.verticalLayout_12.addWidget(self.appointmentLabelCPF)
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.appointmentName)
+
+        self.appointmentCPF = QLineEdit(self.appointmentNew)
+        self.appointmentCPF.setObjectName(u"appointmentCPF")
+        self.appointmentCPF.setMinimumSize(QSize(150, 26))
+        self.appointmentCPF.setMaximumSize(QSize(150, 16777215))
+        self.appointmentCPF.setInputMethodHints(Qt.ImhNone)
+        self.appointmentCPF.setMaxLength(14)
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.appointmentCPF)
 
         self.appointmenLabelDate = QLabel(self.appointmentNew)
         self.appointmenLabelDate.setObjectName(u"appointmenLabelDate")
 
-        self.verticalLayout_12.addWidget(self.appointmenLabelDate)
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.appointmenLabelDate)
 
         self.appointmentLabelHour = QLabel(self.appointmentNew)
         self.appointmentLabelHour.setObjectName(u"appointmentLabelHour")
 
-        self.verticalLayout_12.addWidget(self.appointmentLabelHour)
-
-        self.labelGrip = QLabel(self.appointmentNew)
-        self.labelGrip.setObjectName(u"labelGrip")
-
-        self.verticalLayout_12.addWidget(self.labelGrip)
-
-
-        self.horizontalLayout_11.addLayout(self.verticalLayout_12)
-
-        self.verticalLayout_4 = QVBoxLayout()
-        self.verticalLayout_4.setSpacing(10)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, -1, 0, -1)
-        self.appointmentName = QLineEdit(self.appointmentNew)
-        self.appointmentName.setObjectName(u"appointmentName")
-        self.appointmentName.setMinimumSize(QSize(290, 25))
-        self.appointmentName.setMaximumSize(QSize(290, 16777215))
-
-        self.verticalLayout_4.addWidget(self.appointmentName)
-
-        self.appointmentCPF = QLineEdit(self.appointmentNew)
-        self.appointmentCPF.setObjectName(u"appointmentCPF")
-        self.appointmentCPF.setMinimumSize(QSize(290, 25))
-        self.appointmentCPF.setMaximumSize(QSize(290, 16777215))
-        self.appointmentCPF.setInputMethodHints(Qt.ImhNone)
-
-        self.verticalLayout_4.addWidget(self.appointmentCPF)
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.appointmentLabelHour)
 
         self.appointmentDate = QDateEdit(self.appointmentNew)
         self.appointmentDate.setObjectName(u"appointmentDate")
@@ -855,7 +850,7 @@ class Ui_MainWindow(object):
         self.appointmentDate.setDateTime(QDateTime(QDate(2023, 1, 15), QTime(0, 0, 0)))
         self.appointmentDate.setDate(QDate(2023, 1, 15))
 
-        self.verticalLayout_4.addWidget(self.appointmentDate, 0, Qt.AlignLeft)
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.appointmentDate)
 
         self.appointmentHour = QTimeEdit(self.appointmentNew)
         self.appointmentHour.setObjectName(u"appointmentHour")
@@ -865,32 +860,53 @@ class Ui_MainWindow(object):
         self.appointmentHour.setAlignment(Qt.AlignCenter)
         self.appointmentHour.setButtonSymbols(QAbstractSpinBox.NoButtons)
 
-        self.verticalLayout_4.addWidget(self.appointmentHour, 0, Qt.AlignLeft)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.appointmentHour)
 
+        self.appointmentLabelCPF = QLabel(self.appointmentNew)
+        self.appointmentLabelCPF.setObjectName(u"appointmentLabelCPF")
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.appointmentLabelCPF)
+
+
+        self.verticalLayout_4.addLayout(self.formLayout)
+
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(-1, 22, -1, -1)
         self.appointmentConfirmBtn = QPushButton(self.appointmentNew)
         self.appointmentConfirmBtn.setObjectName(u"appointmentConfirmBtn")
-        self.appointmentConfirmBtn.setMinimumSize(QSize(290, 25))
-        self.appointmentConfirmBtn.setMaximumSize(QSize(290, 25))
-        self.appointmentConfirmBtn.setStyleSheet(u"image: url(:/icons/images/icons/cil-check.png);")
+        self.appointmentConfirmBtn.setMinimumSize(QSize(150, 26))
+        self.appointmentConfirmBtn.setMaximumSize(QSize(150, 26))
+        self.appointmentConfirmBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.appointmentConfirmBtn.setStyleSheet(u"image: url(:/icons/images/icons/cil-check-circle.png);")
 
-        self.verticalLayout_4.addWidget(self.appointmentConfirmBtn)
+        self.horizontalLayout_11.addWidget(self.appointmentConfirmBtn)
+
+        self.appointmentCancelBtn = QPushButton(self.appointmentNew)
+        self.appointmentCancelBtn.setObjectName(u"appointmentCancelBtn")
+        self.appointmentCancelBtn.setMinimumSize(QSize(150, 26))
+        self.appointmentCancelBtn.setMaximumSize(QSize(150, 26))
+        self.appointmentCancelBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.appointmentCancelBtn.setStyleSheet(u"image: url(:/icons/images/icons/cil-x-circle.png);")
+
+        self.horizontalLayout_11.addWidget(self.appointmentCancelBtn)
 
 
-        self.horizontalLayout_11.addLayout(self.verticalLayout_4)
-
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_11.addItem(self.horizontalSpacer_9)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_11)
 
 
-        self.verticalLayout_16.addLayout(self.horizontalLayout_11)
+        self.gridLayout.addLayout(self.verticalLayout_4, 1, 1, 1, 1)
 
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout_17.addLayout(self.verticalLayout_16)
+        self.gridLayout.addItem(self.horizontalSpacer_7, 1, 2, 1, 1)
 
         self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_17.addItem(self.verticalSpacer_4)
+        self.gridLayout.addItem(self.verticalSpacer_4, 2, 1, 1, 1)
+
+
+        self.verticalLayout_12.addLayout(self.gridLayout)
 
 
         self.horizontalLayout_9.addWidget(self.appointmentNew)
@@ -941,6 +957,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.editBtn)
 
+        self.scheduleBtn = QPushButton(self.clientMenu)
+        self.scheduleBtn.setObjectName(u"scheduleBtn")
+        self.scheduleBtn.setMinimumSize(QSize(75, 50))
+        self.scheduleBtn.setStyleSheet(u"image: url(:/icons/images/icons/cil-calendar-check.png);")
+
+        self.horizontalLayout_7.addWidget(self.scheduleBtn)
+
         self.reloadBtn = QPushButton(self.clientMenu)
         self.reloadBtn.setObjectName(u"reloadBtn")
         self.reloadBtn.setMinimumSize(QSize(75, 50))
@@ -969,7 +992,7 @@ class Ui_MainWindow(object):
 
         self.searchBox = QLineEdit(self.clientPage)
         self.searchBox.setObjectName(u"searchBox")
-        self.searchBox.setMinimumSize(QSize(375, 26))
+        self.searchBox.setMinimumSize(QSize(370, 26))
         self.searchBox.setMaximumSize(QSize(375, 16777215))
 
         self.horizontalLayout_6.addWidget(self.searchBox)
@@ -1164,7 +1187,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1222,17 +1245,18 @@ class Ui_MainWindow(object):
         self.labelSurnameEdit.setText(QCoreApplication.translate("MainWindow", u"Sobrenome", None))
         self.labelConsultEdit.setText(QCoreApplication.translate("MainWindow", u"Consulta", None))
         self.labelBornDateEdit.setText(QCoreApplication.translate("MainWindow", u"Nascimento", None))
-        self.appointmentTitle.setText(QCoreApplication.translate("MainWindow", u"Marcar consulta", None))
+        self.appointmentTitle.setText(QCoreApplication.translate("MainWindow", u"Consultas", None))
         self.appointmentLabelName.setText(QCoreApplication.translate("MainWindow", u"Nome", None))
-        self.appointmentLabelCPF.setText(QCoreApplication.translate("MainWindow", u"CPF", None))
         self.appointmenLabelDate.setText(QCoreApplication.translate("MainWindow", u"Data", None))
         self.appointmentLabelHour.setText(QCoreApplication.translate("MainWindow", u"Hora", None))
-        self.labelGrip.setText("")
         self.appointmentDate.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
+        self.appointmentLabelCPF.setText(QCoreApplication.translate("MainWindow", u"CPF", None))
         self.appointmentConfirmBtn.setText("")
+        self.appointmentCancelBtn.setText("")
         self.addBtn.setText("")
         self.delBtn.setText("")
         self.editBtn.setText("")
+        self.scheduleBtn.setText("")
         self.reloadBtn.setText("")
         self.searchBox.setText("")
         ___qtablewidgetitem = self.clientsTable.horizontalHeaderItem(0)

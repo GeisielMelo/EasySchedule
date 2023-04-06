@@ -9,10 +9,10 @@ from PySide6.QtWidgets import (QApplication, QGraphicsDropShadowEffect,
                                QMainWindow, QMessageBox, QTableWidgetItem)
 
 from database.dbAppointment import Appointment
-from database.dbClients import DeleteDB, WriteDB
+from database.dbClients import DeleteDB, EditDB, WriteDB
 from database.dbCreator import CreateDB
-from modules.input_verification import (CheckAppointment, CheckRegister,
-                                        InputVerify)
+from modules.input_verification import (CheckAppointment,
+                                        InputValuesVerification, InputVerify)
 from modules.ui_main import Ui_MainWindow
 from modules.ui_splash_screen import Ui_SplashScreen
 from widgets.circular_progress import CircularProgress
@@ -97,26 +97,7 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.FramelessWindowHint)  # type: ignore
         self.setAttribute(Qt.WA_TranslucentBackground)  # type: ignore
 
-        # Connect buttons with buttonClick function.
-        self.widgets.homeBtn.clicked.connect(self.buttonClick)
-        self.widgets.clientsBtn.clicked.connect(self.buttonClick)
-        self.widgets.appointmentBtn.clicked.connect(self.buttonClick)
-        self.widgets.logoutBtn.clicked.connect(self.buttonClick)
-
-        self.widgets.minimizeAppBtn.clicked.connect(self.buttonClick)
-        self.widgets.maximizeRestoreAppBtn.clicked.connect(self.buttonClick)
-        self.widgets.closeAppBtn.clicked.connect(self.buttonClick)
-
-        self.widgets.addBtn.clicked.connect(self.buttonClick)
-        self.widgets.delBtn.clicked.connect(self.buttonClick)
-        self.widgets.editBtn.clicked.connect(self.buttonClick)
-        self.widgets.reloadBtn.clicked.connect(self.buttonClick)
-
-        self.widgets.searchBox.textChanged.connect(self.searchTable)
-
-        self.widgets.confirmRegisterBtn.clicked.connect(self.tryRegister)
-        self.widgets.appointmentConfirmBtn.clicked.connect(self.tryAppointment)
-
+        # RegularExpression for QLineEdit.
         self.widgets.lineName.setValidator(
             QRegularExpressionValidator(QRegularExpression('[a-zA-Z]*')))
         self.widgets.lineSurname.setValidator(
@@ -131,9 +112,37 @@ class MainWindow(QMainWindow):
         self.widgets.appointmentCPF.setValidator(
             QRegularExpressionValidator(QRegularExpression('\d+')))
 
+        # Connect buttons with buttonClick function.
+        self.widgets.homeBtn.clicked.connect(self.buttonClick)
+        self.widgets.clientsBtn.clicked.connect(self.buttonClick)
+        self.widgets.appointmentBtn.clicked.connect(self.buttonClick)
+        self.widgets.logoutBtn.clicked.connect(self.buttonClick)
+
+        self.widgets.minimizeAppBtn.clicked.connect(self.buttonClick)
+        self.widgets.maximizeRestoreAppBtn.clicked.connect(self.buttonClick)
+        self.widgets.closeAppBtn.clicked.connect(self.buttonClick)
+
+        self.widgets.addBtn.clicked.connect(self.buttonClick)
+        self.widgets.delBtn.clicked.connect(self.buttonClick)
+        self.widgets.editBtn.clicked.connect(self.buttonClick)
+        self.widgets.scheduleBtn.clicked.connect(self.buttonClick)
+        self.widgets.reloadBtn.clicked.connect(self.buttonClick)
+
+        self.widgets.confirmRegisterBtn.clicked.connect(self.tryRegister)
+        self.widgets.confirmeditBtn.clicked.connect(self.buttonClick)
+        self.widgets.appointmentConfirmBtn.clicked.connect(self.buttonClick)
+        self.widgets.appointmentCancelBtn.clicked.connect(self.buttonClick)
+
+        # Search text sended automatically.
+        self.widgets.searchBox.textChanged.connect(self.searchTable)
+
         # Conectando o sinal textChanged() para formatar o número de telefone.
         self.widgets.lineCel.textChanged.connect(
             lambda text: self.widgets.lineCel.setText(
+                InputVerify.format_cel_number(text))
+            )
+        self.widgets.linePhoneEdit.textChanged.connect(
+            lambda text: self.widgets.linePhoneEdit.setText(
                 InputVerify.format_cel_number(text))
             )
         self.widgets.lineCPF.textChanged.connect(
@@ -144,7 +153,11 @@ class MainWindow(QMainWindow):
             lambda text: self.widgets.appointmentCPF.setText(
                 self.cpfv.format_cpf(text))
             )
-        
+        self.widgets.lineCPFEdit.textChanged.connect(
+            lambda text: self.widgets.lineCPFEdit.setText(
+                self.cpfv.format_cpf(text))
+            )
+
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.homePage)
         self.attTableWidget()
 
@@ -168,7 +181,7 @@ class MainWindow(QMainWindow):
 
     def tryRegister(self):
         clientInput = self.getInputRegister()
-        verification = CheckRegister()
+        verification = InputValuesVerification()
 
         if not verification.isFilled(clientInput):
             return QMessageBox.warning(self,
@@ -189,7 +202,7 @@ class MainWindow(QMainWindow):
         try:
             self.proceedRegister(clientInput)
             QMessageBox.information(self, 'Concluído.',
-                                    'A cadastro efetuado.')
+                                    'Cadastro efetuado.')
         except Exception as e:
             return QMessageBox.warning(self, f'ERRO: {exc_type.__name__}',
                                        f'Descrição: {e}.')
@@ -216,7 +229,7 @@ class MainWindow(QMainWindow):
         dados = (inputName, inputCPF, inputDat, inputHour)
         return dados
 
-    def tryAppointment(self):
+    def markAppointment(self):
         """ Write inputs in the data base if True."""
         clientInput = self.getAppointment()
         verification = CheckAppointment()
@@ -233,7 +246,7 @@ class MainWindow(QMainWindow):
             return QMessageBox.warning(self, 'CPF não encontrado.',
                                        'CPF não esta cadastrado.')
         try:
-            self.proceedAppointment(clientInput)
+            self.writeYesAppointment(clientInput)
             QMessageBox.information(self, 'Concluído.',
                                     'A consulta foi agendada')
         except Exception as e:
@@ -244,9 +257,95 @@ class MainWindow(QMainWindow):
             self.attTableWidget()
             self.clearAppointmentLines()
 
-    def proceedAppointment(self, clientInput):
-        makeAppointment = Appointment()
-        makeAppointment.makeAppointment(*clientInput)
+    def unmarkAppointment(self):
+        """ Write inputs in the data base if True."""
+        clientInput = self.getAppointment()
+        verification = CheckAppointment()
+
+        if not verification.isFilled(clientInput):
+            return QMessageBox.warning(self,
+                                       'Consulta', 'Preencha todos os campos.')
+
+        if not verification.isCpfValid(clientInput):
+            return QMessageBox.warning(self,
+                                       'Consulta', 'CPF invalido.')
+
+        if not verification.isCpfInDB(clientInput):
+            return QMessageBox.warning(self, 'CPF não encontrado.',
+                                       'CPF não esta cadastrado.')
+        try:
+            self.writeNoAppointment(clientInput)
+            QMessageBox.warning(self, 'Concluído.',
+                                'A consulta foi cancelada')
+        except Exception as e:
+            return QMessageBox.warning(self, f'ERRO: {exc_type.__name__}',
+                                       f'Descrição: {e}.')
+        finally:
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.clientPage)
+            self.attTableWidget()
+            self.clearAppointmentLines()
+
+    def writeYesAppointment(self, clientInput):
+        write = Appointment()
+        write.makeAppointment(*clientInput)
+
+    def writeNoAppointment(self, clientInput):
+        write = Appointment()
+        write.cancelAppointment(*clientInput)
+
+# /////////////////////////////////////////////////////////////////////////////
+# Edit functions to get, verify and write on database.
+# /////////////////////////////////////////////////////////////////////////////
+
+    def getInputEdit(self):
+        """ Get inputs from the register page. """
+        getID = self.getRowFromClientsTable()
+        userID = getID[0]
+        inputName = self.widgets.lineNameEdit.text()
+        inputSurname = self.widgets.lineSurnameEdit.text()
+        inputGender = self.widgets.genderSelectEdit.currentText()
+        inputCPF = self.widgets.lineCPFEdit.text()
+        inputCel = self.widgets.linePhoneEdit.text()
+        inputBirth = self.widgets.lineBornDateEdit.date().toString(
+            ("dd/MM/yyyy"))
+        inputEmail = self.widgets.lineEmailEdit.text()
+        inputConsult = self.widgets.consultSelectEdit.currentText()
+
+        dados = (userID, inputName, inputSurname, inputGender, inputCPF,
+                 inputCel, inputBirth, inputEmail, inputConsult)
+        return dados
+
+    def tryEdit(self):
+        clientInput = self.getInputEdit()
+        verification = InputValuesVerification()
+
+        if not verification.isFilled(clientInput):
+            return QMessageBox.warning(self,
+                                       'Cadastro', 'Preencha todos os campos.')
+
+        if not verification.isCpfValid(clientInput):
+            return QMessageBox.warning(self, 'CPF invalido',
+                                       'Informe um CPF valido.')
+
+        if not verification.isPhoneValid(clientInput):
+            return QMessageBox.warning(self, 'Telefone incompleto.',
+                                       'Informe um Celular ou Telefone.')
+
+        try:
+            self.proceedEdit(clientInput)
+            QMessageBox.information(self, 'Concluído.',
+                                    'Cadastro editado.')
+        except Exception as e:
+            return QMessageBox.warning(self, f'ERRO: {exc_type.__name__}',
+                                       f'Descrição: {e}.')
+        finally:
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.clientPage)
+            self.clearRegisterLines()
+            self.attTableWidget()
+
+    def proceedEdit(self, clientInput):
+        write = EditDB()
+        write.editUser(*clientInput)
 
 # /////////////////////////////////////////////////////////////////////////////
 # Updates the table from data in db.sqlite3.
@@ -308,7 +407,7 @@ class MainWindow(QMainWindow):
 # Set values into the EditPage.
 # /////////////////////////////////////////////////////////////////////////////
 
-    def setValuesOnEditMode(self):
+    def setValuesOnEditPage(self):
         try:
             values = self.getRowFromClientsTable()
             self.widgets.lineNameEdit.setText(values[1])
@@ -324,18 +423,40 @@ class MainWindow(QMainWindow):
             self.widgets.linePhoneEdit.setText(values[9])
             self.widgets.lineEmailEdit.setText(values[10])
 
-            self.editWindow()
+            self.changeToEditPage()
 
         except IndexError:
             return QMessageBox.information(self, 'Nada selecionado.',
                                            'Selecione um Cliente.')
 
 # /////////////////////////////////////////////////////////////////////////////
-# Change window to EditWindow
+# Set values into the AppointmentPage.
 # /////////////////////////////////////////////////////////////////////////////
 
-    def editWindow(self):
-        return self.widgets.stackedWidget.setCurrentWidget(self.widgets.editPage)
+    def setValuesOnAppointmentPage(self):
+        try:
+            values = self.getRowFromClientsTable()
+            self.widgets.appointmentName.setText(values[1])
+            self.widgets.appointmentCPF.setText(values[3])
+            self.changeToAppointmentPage()
+
+        except IndexError:
+            return QMessageBox.information(self, 'Nada selecionado.',
+                                           'Selecione um Cliente.')
+
+# /////////////////////////////////////////////////////////////////////////////
+# Change window
+# /////////////////////////////////////////////////////////////////////////////
+
+    def changeToEditPage(self):
+        return self.widgets.stackedWidget.setCurrentWidget(
+            self.widgets.editPage
+        )
+
+    def changeToAppointmentPage(self):
+        return self.widgets.stackedWidget.setCurrentWidget(
+            self.widgets.queriesPage
+        )
 
 # /////////////////////////////////////////////////////////////////////////////
 # Allows the application to be dragged around the screen
@@ -423,10 +544,22 @@ class MainWindow(QMainWindow):
                                                'Selecione um usuario.')
 
         if btnName == "editBtn":
-            self.setValuesOnEditMode()
+            self.setValuesOnEditPage()
+
+        if btnName == "scheduleBtn":
+            self.setValuesOnAppointmentPage()
 
         if btnName == "reloadBtn":
             self.attTableWidget()
+
+        if btnName == "confirmeditBtn":
+            self.tryEdit()
+
+        if btnName == "appointmentConfirmBtn":
+            self.markAppointment()
+
+        if btnName == "appointmentCancelBtn":
+            self.unmarkAppointment()
 
         if btnName == "minimizeAppBtn":
             if self.isMinimized():
