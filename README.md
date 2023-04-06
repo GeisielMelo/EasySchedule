@@ -4,6 +4,7 @@
 > This interface is free for any use.
 
 > **Warning**: This project was created using PySide6 and Python 3.11.2, using previous versions can cause compatibility problems.
+
 > **Warning**: There may be some exceptions in this program, so... tell me if you find any errors.
 
 # Running
